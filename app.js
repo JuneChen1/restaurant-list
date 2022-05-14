@@ -12,6 +12,12 @@ app.get('/', (req, res) => {
   res.render('index', { restaurant: restaurants.results })
 })
 
+app.get('/restaurants/:id', (req, res) => {
+  const restaurant = restaurants.results.find(item => req.params.id === item.id.toString())
+  
+  res.render('show', { restaurant: restaurant })
+})
+
 app.listen(port, () => {
   console.log(`Express is running on http://localhost:${port}`)
 })
