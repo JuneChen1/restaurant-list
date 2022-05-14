@@ -8,7 +8,7 @@
 + 可在搜尋欄輸入餐廳名稱或種類來尋找餐廳
 + 按下地址後方的圖標，連接google map查看餐廳位置
 ## 環境建置
-1. Node.js 1.1.9
+1. Node.js 16.15.0
 2. Express 4.18.1
 3. Express-handlebars 3.0.0
 ## 安裝流程
