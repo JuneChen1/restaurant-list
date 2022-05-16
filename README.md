@@ -32,7 +32,7 @@ npm install nodemon
 ```
 nodemon app.js
 ```
-6. 當終端機出現以下訊息，代表終端機已成功啟動
+6. 當終端機出現以下訊息，代表伺服器已成功啟動
 ```
 Express is running on http://localhost:3000
 ```
