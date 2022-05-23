@@ -3,6 +3,19 @@ const app = express()
 const port = 3000
 const exphts = require('express-handlebars')
 const restaurants = require('./restaurant.json')
+const mongoose = require('mongoose')
+mongoose.connect(process.env.MONGODB_URI)
+console.log(process.env.MONGODB_URI)
+
+const db = mongoose.connection
+
+db.on('error', () => {
+  console.log('mongodb error')
+})
+
+db.once('open', () => {
+  console.log('mongodb connected')
+})
 
 app.engine('handlebars', exphts({ defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
@@ -20,7 +33,8 @@ app.get('/restaurants/:id', (req, res) => {
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.toLowerCase()
   const restaurant = restaurants.results.filter(item => {
-    if (item.name.toLowerCase().includes(keyword) || item.category.toLowerCase().includes(keyword)) {
+    if (item.name.toLowerCase().includes(keyword) 
+    || item.category.toLowerCase().includes(keyword)) {
       return item
     }
   })
