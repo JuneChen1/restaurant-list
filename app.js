@@ -2,10 +2,14 @@ const express = require('express')
 const app = express()
 const port = 3000
 const exphts = require('express-handlebars')
-const restaurants = require('./restaurant.json')
 const mongoose = require('mongoose')
-mongoose.connect(process.env.MONGODB_URI)
-console.log(process.env.MONGODB_URI)
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.urlencoded({ extended: true }))
+
+const Restaurant = require('./models/restaurant')
+
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
 
@@ -22,7 +26,21 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.render('index', { restaurant: restaurants.results })
+  Restaurant.find()
+    .lean()
+    .then(restaurant => { res.render('index', { restaurant }) })
+    .catch(error => console.log(error))
+  
+})
+
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  Restaurant.create(req.body)
+    .then(() => {res.redirect('/')})
+    .catch(error => console.log(error))
 })
 
 app.get('/restaurants/:id', (req, res) => {
