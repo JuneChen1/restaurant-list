@@ -57,15 +57,19 @@ app.get('/restaurants/:id', (req, res) => {
 
 //搜尋餐廳
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword.toLowerCase()
-  const restaurant = restaurants.results.filter(item => {
-    if (item.name.toLowerCase().includes(keyword) 
-    || item.category.toLowerCase().includes(keyword)) {
-      return item
-    }
-  })
-
-  res.render('index', { restaurant: restaurant, keyword: keyword })
+  const keyword = req.query.keyword.trim().toLowerCase()
+  Restaurant.find()
+    .lean()
+    .then(items => {
+      const restaurants = items.filter(item => {
+        if (item.name.toLowerCase().includes(keyword)
+          || item.category.toLowerCase().includes(keyword)) {
+          return item
+        }
+      })
+      res.render('index', { restaurant: restaurants, keyword })
+    })
+    .catch(error => console.log(error))
 })
 
 //刪除餐廳
