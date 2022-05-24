@@ -16,6 +16,7 @@
 4. Bootstrap 4.3.1
 5. Mongoose 5.9.7
 6. Body-parser 1.20.0
+7. Dotenv 16.0.1
 ## 安裝流程
 1. 使用終端機下載專案
 ```
