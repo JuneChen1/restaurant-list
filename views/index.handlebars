@@ -25,7 +25,7 @@
 
       {{#each restaurant}}
         <div class="card">
-          <a href="/restaurants/{{this.id}}" class="text-secondary">
+          <a href="/restaurants/{{this._id}}" class="text-secondary">
             <div class="card mb-3">
               <img class="card-img-top" src="{{this.image}}"
                 alt="{{this.name}}">
@@ -46,7 +46,7 @@
           </a>
           <div class="d-flex justify-content-end align-items-center pb-2">
             <a href="" class="mx-2">Edit</a>
-            <a href="/restaurants/{{this.id}}" class="mx-2">Detail</a>
+            <a href="/restaurants/{{this._id}}" class="mx-2">Detail</a>
             <button class="btn btn-danger mx-2">Delete</button>
           </div>
         </div>
