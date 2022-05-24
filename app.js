@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
 
 const Restaurant = require('./models/restaurant')
+const restaurant = require('./models/restaurant')
 
 //連線mongodb
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -65,6 +66,15 @@ app.get('/search', (req, res) => {
   })
 
   res.render('index', { restaurant: restaurant, keyword: keyword })
+})
+
+//刪除餐廳
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 
 app.listen(port, () => {
