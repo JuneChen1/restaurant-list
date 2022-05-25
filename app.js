@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 const Restaurant = require('./models/restaurant')
 
-require('dotenv').config
+require('dotenv').config()
 
 //連線mongodb
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
