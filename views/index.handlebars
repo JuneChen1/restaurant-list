@@ -60,7 +60,7 @@
           <div class="d-flex justify-content-end align-items-center pb-2">
             <a href="/restaurants/{{this._id}}/edit" class="mx-2">編輯</a>
             <a href="/restaurants/{{this._id}}" class="mx-2">詳細資訊</a>
-            <form action="/restaurants/{{this._id}}/delete" method="POST">
+            <form action="/restaurants/{{this._id}}?_method=DELETE" method="POST">
               <button class="btn btn-danger mx-2">刪除</button>
             </form>
           </div>
