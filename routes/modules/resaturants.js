@@ -9,7 +9,7 @@ router.use(bodyParser.urlencoded({ extended: true }))
 
 router.use(methodOverride('_method'))
 
-//新增餐廳
+// 新增餐廳
 router.get('/new', (req, res) => {
   res.render('new')
 })
@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//查看特定餐廳
+// 查看特定餐廳
 router.get('/:id', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)
@@ -28,7 +28,7 @@ router.get('/:id', (req, res) => {
     .then(restaurant => res.render('show', { restaurant }))
 })
 
-//刪除餐廳
+// 刪除餐廳
 router.delete('/:id', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)
@@ -37,7 +37,7 @@ router.delete('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//修改餐廳資訊
+// 修改餐廳資訊
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)

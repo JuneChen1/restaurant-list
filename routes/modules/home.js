@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//搜尋餐廳
+// 搜尋餐廳
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim().toLowerCase()
   Restaurant.find({
