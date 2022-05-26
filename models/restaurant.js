@@ -6,8 +6,7 @@ const restaurantSchema = new Schema({
     required: true
   },
   name_en:{
-    type: String,
-    required: true
+    type: String
   },
   category: {
     type: String,
@@ -34,8 +33,7 @@ const restaurantSchema = new Schema({
     required: true
   },
   description: {
-    type: String,
-    required: true
+    type: String
   }
 })
 module.exports = mongoose.model('Restaurant', restaurantSchema)

@@ -59,17 +59,13 @@ app.get('/restaurants/:id', (req, res) => {
 //搜尋餐廳
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim().toLowerCase()
-  Restaurant.find()
+    Restaurant.find({ 
+      $or: [
+        { name: { $regex: keyword, $options: 'i'}},
+        { category: { $regex: keyword, $options: 'i' } }
+      ]})
     .lean()
-    .then(items => {
-      const restaurants = items.filter(item => {
-        if (item.name.toLowerCase().includes(keyword)
-          || item.category.toLowerCase().includes(keyword)) {
-          return item
-        }
-      })
-      res.render('index', { restaurant: restaurants, keyword })
-    })
+    .then(restaurants => res.render('index', { restaurant: restaurants, keyword }))
     .catch(error => console.log(error))
 })
 
