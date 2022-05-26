@@ -1,10 +1,11 @@
 # 餐廳清單
 收藏喜愛餐廳的網站。
 ## 網站畫面
-![restaurant list](https://user-images.githubusercontent.com/103798145/169940778-32cec4eb-cecb-46c2-8d13-5ba92ca1f424.jpg)
+![restaurant list](https://user-images.githubusercontent.com/103798145/170467853-9d03449f-9695-4a3d-ab15-d1860d3dde6e.jpg)
 ## 功能說明
 + 可瀏覽全部餐廳
 + 可在搜尋欄輸入餐廳名稱或種類來尋找餐廳
++ 可根據餐廳名稱、類別或地區排列餐廳
 + 可點擊任一餐廳，查看詳細資料
 + 按下地址後方的圖標，連接google map查看餐廳位置
 + 可編輯餐廳資訊
@@ -14,8 +15,8 @@
 2. Express 4.18.1
 3. Express-handlebars 3.0.0
 4. Bootstrap 4.3.1
-5. Mongoose 5.9.7
-6. Body-parser 1.20.0
+5. Font-awesome 5.8.1
+6. Mongoose 5.9.7
 7. Dotenv 16.0.1
 ## 安裝流程
 1. 使用終端機下載專案
