@@ -12,19 +12,13 @@ router.get('/', (req, res) => {
 // 搜尋餐廳
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim().toLowerCase()
-  const sortKey = req.query.sort
-  const sortMethod = {
-    name_asc: { name: 'asc' },
-    name_desc: { name: 'desc' },
-    category: { category: 'asc' },
-    location: { location: 'asc' }
-  }
+  const [property, sortBy] = req.query.sort.split('_')
 
   const sort = {
     name_asc: 'A -> Z',
     name_desc: 'Z -> A',
-    category: '類別',
-    location: '地區'
+    category_asc: '類別',
+    location_asc: '地區'
   }
 
   Restaurant.find({
@@ -34,8 +28,8 @@ router.get('/search', (req, res) => {
     ]
   })
     .lean()
-    .sort(sortMethod[sortKey])
-    .then(restaurants => res.render('index', { restaurant: restaurants, keyword, sort: sort[sortKey] }))
+    .sort({ [property]: sortBy })
+    .then(restaurants => res.render('index', { restaurant: restaurants, keyword, sort: sort[req.query.sort] }))
     .catch(error => console.log(error))
 })
 
