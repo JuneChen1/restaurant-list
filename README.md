@@ -35,12 +35,20 @@ npm install
 ```
 npm install nodemon
 ```
-5. 啟動伺服器
+5.設定環境變數連線MongoDB
+```
+MONGODB_URI=mongodb+srv://<account>:<password>@cluster0.9lnbo.mongodb.net/<database name>?retryWrites=true&w=majority
+```
+6. 建立種子資料
+```
+npm run seed
+```
+7. 啟動伺服器
 ```
 npm run dev
 ```
-6. 當終端機出現以下訊息，代表伺服器已成功啟動
+8. 當終端機出現以下訊息，代表伺服器已成功啟動
 ```
 Express is running on http://localhost:3000
 ```
-7. 開啟瀏覽器輸入 http://localhost:3000
+9. 開啟瀏覽器輸入 http://localhost:3000
