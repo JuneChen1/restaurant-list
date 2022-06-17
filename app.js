@@ -3,10 +3,12 @@ const app = express()
 const port = 3000
 const exphts = require('express-handlebars')
 const bodyParser = require('body-parser')
+const usePassport = require('./config/passport')
 
 const routes = require('./routes')
 require('./config/mongoose')
 
+usePassport(app)
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(routes)
