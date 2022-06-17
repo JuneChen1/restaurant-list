@@ -2,9 +2,12 @@ const express = require('express')
 const app = express()
 const port = 3000
 const exphts = require('express-handlebars')
+const bodyParser = require('body-parser')
 
 const routes = require('./routes')
 require('./config/mongoose')
+
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(routes)
 app.use(express.static('public'))
