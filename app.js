@@ -1,4 +1,5 @@
 const express = require('express')
+const session = require('express-session')
 const app = express()
 const port = 3000
 const exphts = require('express-handlebars')
@@ -11,11 +12,18 @@ require('./config/mongoose')
 usePassport(app)
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.use(routes)
 app.use(express.static('public'))
 
 app.engine('handlebars', exphts({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+
+app.use(session({
+  secret: 'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true
+}))
+
+app.use(routes)
 
 app.listen(port, () => {
   console.log(`Express is running on http://localhost:${port}`)
