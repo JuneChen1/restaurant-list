@@ -9,7 +9,6 @@ const usePassport = require('./config/passport')
 const routes = require('./routes')
 require('./config/mongoose')
 
-usePassport(app)
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(express.static('public'))
@@ -22,6 +21,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+
+usePassport(app)
 
 app.use(routes)
 
