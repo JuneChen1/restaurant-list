@@ -10,6 +10,10 @@ const flash = require('connect-flash')
 const routes = require('./routes')
 require('./config/mongoose')
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(express.static('public'))
@@ -18,7 +22,7 @@ app.engine('handlebars', exphts({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
@@ -36,6 +40,6 @@ app.use((req, res, next) => {
 
 app.use(routes)
 
-app.listen(port, () => {
-  console.log(`Express is running on http://localhost:${port}`)
+app.listen(process.env.PORT, () => {
+  console.log(`Express is running on http://localhost:${process.env.PORT}`)
 })
