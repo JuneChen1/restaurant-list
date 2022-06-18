@@ -1,7 +1,6 @@
 const express = require('express')
 const session = require('express-session')
 const app = express()
-const port = 3000
 const exphts = require('express-handlebars')
 const bodyParser = require('body-parser')
 const usePassport = require('./config/passport')
