@@ -33,26 +33,23 @@ router.post('/register', (req, res) => {
   if (password !== confirmPassword) {
     errors.push({ message: '密碼與確認密碼不相符' })
   }
+
+  const errorMessage = {
+    errors,
+    name,
+    email,
+    password,
+    confirmPassword
+  }
+
   if (errors.length) {
-    return res.render('register', {
-      errors,
-      name,
-      email,
-      password,
-      confirmPassword
-    })
+    return res.render('register', errorMessage)
   }
   User.findOne({ email })
     .then(user => {
       if (user) {
         errors.push({ message: '這個 Email 已經註冊過了' })
-        return res.render('register', {
-          errors,
-          name,
-          email,
-          password,
-          confirmPassword
-        })
+        return res.render('register', errorMessage)
       }
       return bcrypt
         .genSalt(10)
